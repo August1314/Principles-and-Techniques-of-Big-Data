@@ -1,0 +1,42 @@
+# macOS
+.DS_Store
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Jupyter / IPython
+.ipynb_checkpoints/
+
+# Environments
+.venv/
+venv/
+env/
+.env
+
+# Build / dist
+build/
+dist/
+*.egg-info/
+
+# Assignment outputs / datasets
+作业1/outputs/
+作业1/data/MNIST/
+作业1/data/*.gz
+作业1/data/*.idx*
+作业1/data/*.pt
+作业1/data/*.png
+
+# Optional: if 作业2 also produces outputs/data
+作业2/outputs/
+作业2/data/
+
+# Submission archives
+*.zip
+
