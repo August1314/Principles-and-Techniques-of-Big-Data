@@ -1,0 +1,78 @@
+[
+  {
+    "algorithm": "KMeans",
+    "k": 2,
+    "accuracy": 0.6667,
+    "silhouette_score": 0.681,
+    "calinski_harabasz_score": 513.9245,
+    "cluster_count": 2,
+    "noise_count": 0
+  },
+  {
+    "algorithm": "KMeans",
+    "k": 3,
+    "accuracy": 0.8867,
+    "silhouette_score": 0.5512,
+    "calinski_harabasz_score": 561.5937,
+    "cluster_count": 3,
+    "noise_count": 0
+  },
+  {
+    "algorithm": "KMeans",
+    "k": 4,
+    "accuracy": 0.88,
+    "silhouette_score": 0.4981,
+    "calinski_harabasz_score": 530.7658,
+    "cluster_count": 4,
+    "noise_count": 0
+  },
+  {
+    "algorithm": "KMeans",
+    "k": 5,
+    "accuracy": 0.9333,
+    "silhouette_score": 0.4313,
+    "calinski_harabasz_score": 446.4427,
+    "cluster_count": 5,
+    "noise_count": 0
+  },
+  {
+    "algorithm": "DBSCAN",
+    "eps": 0.3,
+    "min_samples": 3,
+    "accuracy": 0.5467,
+    "silhouette_score": 0.6162,
+    "calinski_harabasz_score": 320.279,
+    "cluster_count": 9,
+    "noise_count": 67
+  },
+  {
+    "algorithm": "DBSCAN",
+    "eps": 0.5,
+    "min_samples": 4,
+    "accuracy": 0.6467,
+    "silhouette_score": 0.5082,
+    "calinski_harabasz_score": 350.8099,
+    "cluster_count": 3,
+    "noise_count": 13
+  },
+  {
+    "algorithm": "DBSCAN",
+    "eps": 0.6,
+    "min_samples": 5,
+    "accuracy": 0.6333,
+    "silhouette_score": 0.723,
+    "calinski_harabasz_score": 620.5962,
+    "cluster_count": 2,
+    "noise_count": 9
+  },
+  {
+    "algorithm": "DBSCAN",
+    "eps": 0.8,
+    "min_samples": 5,
+    "accuracy": 0.6667,
+    "silhouette_score": 0.6925,
+    "calinski_harabasz_score": 525.5461,
+    "cluster_count": 2,
+    "noise_count": 2
+  }
+]
