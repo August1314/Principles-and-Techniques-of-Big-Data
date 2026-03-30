@@ -1,0 +1,9 @@
+{
+  "model": "RNN-LSTM(Embedding, device=cpu)",
+  "accuracy": 0.51276,
+  "precision": 0.5549053356282272,
+  "recall": 0.12896,
+  "f1": 0.20928270042194091,
+  "train_seconds": 90.03390783399999,
+  "infer_seconds": 17.45758170900001
+}

@@ -1,0 +1,142 @@
+# 大数据原理与技术 作业4实验报告
+
+## 电影评论情感分类：TF-IDF + LR/SVM 与 RNN 对比
+
+姓名：梁力航  
+学号：23336128
+
+## 1. 实验目的
+
+本实验以 IMDB 电影评论数据集为基础，完成二分类情感分析任务（正向/负向）。实验目标如下：
+
+1. 使用 TF-IDF 提取文本特征，并分别训练逻辑回归与线性 SVM；
+2. 构建 RNN（Embedding + LSTM）模型作为深度学习对照组；
+3. 对比三种模型在准确率、精确率、召回率、F1 以及训练/推理耗时上的差异；
+4. 分析不同方法在文本表示方式和泛化能力上的优劣。
+
+## 2. 实验任务与要求
+
+根据课程作业要求，本次作业需完成：
+
+- 使用 IMDB（或其他）电影评论数据集；
+- 使用 TF-IDF 进行特征提取，并以逻辑回归/SVM/RNN 实现分类；
+- 分析准确率差异；
+- 提交代码与不少于 2 页的实验报告。
+
+本实验严格按要求实现：
+
+- `TF-IDF` 仅用于 `LR` 与 `SVM`；
+- `RNN` 使用词序列嵌入输入（非 TF-IDF），作为深度学习对照组。
+
+## 3. 数据集说明
+
+本实验使用 Stanford 提供的 IMDB 影评情感分类数据集（`aclImdb_v1`）：
+
+- 训练集：25,000 条（正负各半）
+- 测试集：25,000 条（正负各半）
+- 标签：`1=positive`，`0=negative`
+
+数据在首次运行时自动下载并解压到 `data/aclImdb`。
+
+## 4. 实验环境
+
+- 操作系统：macOS
+- Python 环境：Anaconda `ml`
+- 主要依赖：NumPy、scikit-learn、PyTorch
+- 运行方式：CPU 可复现（无需 GPU）
+
+## 5. 方法与实现
+
+### 5.1 数据预处理
+
+采用最小必要清洗策略（KISS / YAGNI）：
+
+- 去除 HTML 标签；
+- 文本转小写；
+- 合并多余空白字符。
+
+未加入额外复杂特征工程（如词性、实体规则等），避免引入与题目无关的复杂性。
+
+### 5.2 TF-IDF + 逻辑回归
+
+- TF-IDF 参数：`max_features=20000`，`ngram_range=(1,2)`，`min_df=2`，`sublinear_tf=True`
+- LR 参数：`solver=liblinear`，`C=4.0`，`max_iter=2000`
+
+### 5.3 TF-IDF + 线性 SVM
+
+- TF-IDF 参数与 LR 保持一致
+- SVM 参数：`LinearSVC(C=1.0)`
+
+### 5.4 RNN（Embedding + LSTM）
+
+- 词表：训练集高频词，`vocab_size=20000`
+- 序列长度：`max_len=300`
+- 网络结构：`Embedding -> LSTM -> Linear`
+- 训练参数：`batch_size=128`，`epochs=3`，`lr=1e-3`
+
+### 5.5 评价指标
+
+统一使用以下指标进行比较：
+
+- Accuracy
+- Precision
+- Recall
+- F1
+- 训练耗时（train_seconds）
+- 推理耗时（infer_seconds）
+
+## 6. 实验结果
+
+运行命令：
+
+```bash
+conda run -n ml python src/run_all.py --sample-per-class 200
+```
+
+结果文件：`outputs/metrics_summary.md` 与 `outputs/metrics_summary.json`
+
+本次实现验证阶段（每类抽样 200 条）结果如下：
+
+| model | accuracy | precision | recall | f1 | train_seconds | infer_seconds |
+|---|---:|---:|---:|---:|---:|---:|
+| LogisticRegression(TF-IDF) | 0.8400 | 0.8333 | 0.8500 | 0.8416 | 0.0088 | 0.0002 |
+| LinearSVM(TF-IDF) | 0.8325 | 0.8308 | 0.8350 | 0.8329 | 0.0050 | 0.0003 |
+| RNN-LSTM(Embedding, device=cpu) | 0.5075 | 0.5044 | 0.8550 | 0.6345 | 1.5744 | 0.2228 |
+
+说明：以上为快速烟雾实验结果，用于验证流程和产物。提交前可执行全量命令 `conda run -n ml python src/run_all.py`，再更新表格为全量结果。
+
+## 7. 结果分析
+
+### 7.1 准确率对比
+
+一般情况下，LR 与线性 SVM 在 IMDB 二分类任务上都能取得较强基线表现；当 TF-IDF 参数合理时，两者准确率常接近。SVM 往往在高维稀疏特征上表现稳定，LR 具有更直接的概率解释性。
+
+### 7.2 RNN 与 TF-IDF 方法差异
+
+RNN 的输入是有序词序列，能够建模词序关系；TF-IDF 则是基于词频统计的稀疏向量，不直接建模序列顺序。二者差异主要体现为：
+
+- 表示层面：TF-IDF 强调词项统计，RNN 强调上下文序列；
+- 训练成本：RNN 训练通常明显慢于 LR/SVM；
+- 工程稳定性：LR/SVM 收敛快、调参简单，适合作为课程作业稳健基线。
+
+### 7.3 综合结论
+
+在课程作业场景中，推荐将 `TF-IDF + LR/SVM` 作为强基线，并以 `RNN` 作为深度学习对照组。这样既满足作业“TF-IDF + 多模型比较”的要求，也能清晰展示传统机器学习与序列神经网络的建模差异与效率差异。
+
+## 8. 复现说明
+
+在 `作业4` 目录下执行：
+
+```bash
+conda run -n ml python -m pip install -r requirements.txt
+conda run -n ml python -m unittest discover -s tests -v
+conda run -n ml python src/run_all.py
+```
+
+若只做流程验证，可使用：
+
+```bash
+conda run -n ml python src/run_all.py --sample-per-class 200
+```
+
+运行后，`outputs/` 目录会自动生成全部指标文件。

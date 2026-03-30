@@ -1,0 +1,29 @@
+[
+  {
+    "model": "LogisticRegression(TF-IDF)",
+    "accuracy": 0.90076,
+    "precision": 0.8989408298160388,
+    "recall": 0.90304,
+    "f1": 0.9009857524843358,
+    "train_seconds": 0.5706792919999977,
+    "infer_seconds": 0.0048636250000022585
+  },
+  {
+    "model": "LinearSVM(TF-IDF)",
+    "accuracy": 0.8912,
+    "precision": 0.892015392015392,
+    "recall": 0.89016,
+    "f1": 0.8910867301994074,
+    "train_seconds": 0.5898267080000004,
+    "infer_seconds": 0.008480625000000686
+  },
+  {
+    "model": "RNN-LSTM(Embedding, device=cpu)",
+    "accuracy": 0.51276,
+    "precision": 0.5549053356282272,
+    "recall": 0.12896,
+    "f1": 0.20928270042194091,
+    "train_seconds": 90.03390783399999,
+    "infer_seconds": 17.45758170900001
+  }
+]

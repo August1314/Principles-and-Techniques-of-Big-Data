@@ -1,0 +1,9 @@
+{
+  "model": "LinearSVM(TF-IDF)",
+  "accuracy": 0.8912,
+  "precision": 0.892015392015392,
+  "recall": 0.89016,
+  "f1": 0.8910867301994074,
+  "train_seconds": 0.5898267080000004,
+  "infer_seconds": 0.008480625000000686
+}
