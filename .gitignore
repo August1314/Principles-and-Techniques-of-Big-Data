@@ -40,3 +40,6 @@ dist/
 # Submission archives
 *.zip
 
+# Local git worktrees
+.worktrees/
+
