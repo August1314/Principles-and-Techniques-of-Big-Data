@@ -37,6 +37,9 @@ dist/
 作业2/outputs/
 作业2/data/
 
+# Large local datasets
+作业4/data/
+
 # Submission archives
 *.zip
 

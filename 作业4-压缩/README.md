@@ -25,7 +25,9 @@
 - `src/run_all.py`：一键运行全部实验并导出结果
 - `tests/`：单元测试与烟雾集成测试
 - `outputs/`：指标结果输出目录
-- `report.md`：实验报告
+- `23336128-梁力航-作业4.pdf`：提交用实验报告 PDF
+- `23336128-梁力航-作业4.md`：实验报告 Markdown 源文件
+- `23336128-梁力航-作业4.tex`：实验报告 LaTeX 源文件
 
 ## 环境（Anaconda `ml`）
 
@@ -77,4 +79,4 @@ conda run -n ml python src/run_all.py --sample-per-class 200
 
 ## 复现实验建议
 
-在报告提交前，建议执行一次全量实验，然后将 `outputs/metrics_summary.md` 的结果表复制到 `report.md` 的结果章节，保证报告与代码一致。
+在报告提交前，建议执行一次全量实验，然后将 `outputs/metrics_summary.md` 的结果表同步到 `23336128-梁力航-作业4.md` / `23336128-梁力航-作业4.tex`，保证报告与代码一致。
