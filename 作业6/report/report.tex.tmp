@@ -1,0 +1,2 @@
+% silence pgfplots compat message (suppress before \documentclass)
+\immediate\write16{Starting xelatex...}
